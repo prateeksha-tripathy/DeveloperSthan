@@ -1,4 +1,5 @@
 from django import forms
+from .models import Project
 
 from .models import Item
 
@@ -25,4 +26,26 @@ class EditItemForm(forms.ModelForm):
             'video': forms.FileInput(attrs={
                 'class': INPUT_CLASSES
             })  
+        }
+
+class EditProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ('title', 'description', 'cover_image', 'demo_link', 'demo_video')
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'class': 'INPUT_CLASSES',  # Make sure to replace 'INPUT_CLASSES' with the actual CSS class you want to use
+            }),
+            'description': forms.Textarea(attrs={
+                'class': 'INPUT_CLASSES',
+            }),
+            'cover_image': forms.FileInput(attrs={
+                'class': 'INPUT_CLASSES',
+            }),
+            'demo_link': forms.URLInput(attrs={
+                'class': 'INPUT_CLASSES',
+            }),
+            'demo_video': forms.FileInput(attrs={
+                'class': 'INPUT_CLASSES',
+            })
         }
